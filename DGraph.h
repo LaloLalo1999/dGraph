@@ -14,7 +14,7 @@ typedef struct strVertex *Vertex;
 
 typedef struct strEdge *Edge;
 
-DGraph dgraphCreate(size_t); // Crea un grafo vacio       
+DGraph dgraphCreate(); // Crea un grafo vacio
 
 unsigned int sizeGraph(DGraph); // Cantidad de vertices
 

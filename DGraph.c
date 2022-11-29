@@ -6,6 +6,7 @@
 struct strVertex{
     Type data;
     List edges;
+//    size_t data_size_vertex;
 };
 
 typedef struct strVertex *Vertex;
@@ -14,6 +15,7 @@ struct strEdge{
     Type data;
     Vertex origin;
     Vertex destination;
+//    size_t data_size_edge;
 };
 
 typedef struct strEdge *Edge;
@@ -21,16 +23,14 @@ typedef struct strEdge *Edge;
 struct strDGraph{
     List vertices;
     List edges;
-    size_t data_size;
 };
 
 typedef struct strDGraph *DGraph;
 
-DGraph dgraphCreate(size_t bytes){
+DGraph dgraphCreate(size_t data_size_vertex, size_t data_size_edge){
     DGraph new=malloc(sizeof(struct strDGraph));
-    new->vertices=listCreate(bytes);
-    new->edges=listCreate(bytes);
-    new->data_size=bytes;
+    new->vertices=listCreate(sizeof(struct strVertex));
+    new->edges=listCreate(sizeof(struct strEdge));
     return new;
 }
 
@@ -52,9 +52,9 @@ Type neighbors(DGraph graph, Type x){
 }
 
 void addVertex(DGraph graph, Type x){
-    Vertex vertex = malloc(graph->data_size);
+    Vertex vertex = malloc(sizeof(struct strVertex));
     vertex->data = x;
-    vertex->edges = listCreate(graph->data_size);
+    vertex->edges = listCreate(sizeof(struct strEdge));
     listAdd(graph->vertices, vertex);
 }
 
@@ -65,13 +65,15 @@ Type removeVertex(DGraph graph, Type x){
 }
 
 void addEdge(DGraph graph, Type x, Type y){
-    Vertex vertex = listGet(graph->vertices, listSearch(graph->vertices, x));
-    Edge edge = malloc(sizeof(struct strEdge));
-    edge->data = NULL;
-    edge->origin = vertex;
-    edge->destination = listGet(graph->vertices, listSearch(graph->vertices, y));
-    listAdd(vertex->edges, edge);
-    listAdd(graph->edges, edge);
+    if (listGet(graph->vertices, listSearch(graph->vertices, x)) != NULL && listGet(graph->vertices, listSearch(graph->vertices, y)) != NULL){
+        Vertex vertex = listGet(graph->vertices, listSearch(graph->vertices, x));
+        Edge edge = malloc(sizeof(struct strEdge));
+        edge->data = y;
+        edge->origin = vertex;
+        edge->destination = listGet(graph->vertices, listSearch(graph->vertices, y));
+        listAdd(vertex->edges, edge);
+        listAdd(graph->edges, edge);
+    }
 }
 
 Type removeEdge(DGraph graph, Type x, Type y){
