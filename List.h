@@ -21,4 +21,6 @@ int listSearch(List, Type);
 
 Type listRemove(List, int);
 
+void listDestroy(List);
+
 #endif /* LIST_H_ */

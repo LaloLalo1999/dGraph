@@ -13,4 +13,5 @@ int main(void){
     addVertex(G, q);
     printf("Size: %d \n", sizeGraph(G));
     addEdge(G, p, q);
+    printf("Adjacent: %d \n", adjacent(G, p, q));
 }

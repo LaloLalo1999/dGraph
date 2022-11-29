@@ -158,3 +158,16 @@ Type listRemove(List lt, int p){
 	}
 	return NULL;
 }
+
+void listDestroy(List lt){
+	if(lt!=NULL){
+		Node current=lt->first;
+		while(current!=NULL){
+			Node temp=current;
+			current=current->next;
+			free(temp->data);
+			free(temp);
+		}
+		free(lt);
+	}
+}
