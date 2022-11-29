@@ -52,9 +52,9 @@ Type neighbors(DGraph graph, Type x){
 }
 
 void addVertex(DGraph graph, Type x){
-    Vertex vertex = malloc(sizeof(struct strVertex));
+    Vertex vertex = malloc(sizeof(graph->data_size));
     vertex->data = x;
-    vertex->edges = listCreate(sizeof(struct strEdge));
+    vertex->edges = listCreate(sizeof(graph->data_size));
     listAdd(graph->vertices, vertex);
 }
 
