@@ -1,12 +1,14 @@
-#incluude <stddef.h>
+#include <stddef.h>
 #include "List.h"
 
-#ifndef GRAPH_H_H
-#define GRAPH_H_H
+#ifndef DGRAPH_H_H
+#define DGRAPH_H_H
 
 typedef void * Type;
 
-#endif /* GRAPH_H_H */
+
+
+#endif /* DGRAPH_H_H */
 
 
 /*Voy a darle una leida al canvas*/
