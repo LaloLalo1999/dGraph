@@ -34,9 +34,9 @@ Type GetVertexData(DGraph, Type); // Devuelve el dato de un vertice
 
 void SetVertexData(DGraph, Type, Type); // Modifica el dato de un vertice
 
-unsigned int getEdgeLabel(DGraph, Type, Type); // Retorna la etiqueta asociada con la arista que conecta a los vértices: x, y; 
+Type getEdgeLabel(DGraph, Type, Type); // Retorna la etiqueta asociada con la arista que conecta a los vértices: x, y; 
 
-void setEdgeLabel(DGraph, Type, Type, unsigned int); // Modifica el label de una arista
+void setEdgeLabel(DGraph, Type, Type, Type); // Modifica el label de una arista
 
 void destroyGraph(DGraph); // Destruye el grafo
 

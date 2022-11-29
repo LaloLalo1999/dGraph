@@ -12,4 +12,5 @@ int main(void){
     printf("Size: %d \n", sizeGraph(G));
     addVertex(G, q);
     printf("Size: %d \n", sizeGraph(G));
+    addEdge(G, p, q);
 }
