@@ -2,6 +2,7 @@
 #include "List.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 struct strVertex{
     Type data;
@@ -23,14 +24,18 @@ typedef struct strEdge *Edge;
 struct strDGraph{
     List vertices;
     List edges;
+    size_t data_size_vertex;
+    size_t data_size_edge;
 };
 
 typedef struct strDGraph *DGraph;
 
-DGraph dgraphCreate(size_t data_size_vertex, size_t data_size_edge){
+DGraph dgraphCreate(size_t bytes_vertex, size_t bytes_edge){
     DGraph new=malloc(sizeof(struct strDGraph));
-    new->vertices=listCreate(sizeof(struct strVertex));
-    new->edges=listCreate(sizeof(struct strEdge));
+    new->vertices=listCreate(bytes_vertex);
+    new->edges=listCreate(bytes_edge);
+    new->data_size_vertex=bytes_vertex;
+    new->data_size_edge=bytes_edge;
     return new;
 }
 
@@ -65,15 +70,18 @@ Type removeVertex(DGraph graph, Type x){
 }
 
 void addEdge(DGraph graph, Type x, Type y){
-    if (listGet(graph->vertices, listSearch(graph->vertices, x)) != NULL && listGet(graph->vertices, listSearch(graph->vertices, y)) != NULL){
-        Vertex vertex = listGet(graph->vertices, listSearch(graph->vertices, x));
+    if (listSearch(graph->vertices, x) != -1 && listSearch(graph->vertices, y) != -1){
+        Vertex vertex_x = listGet(graph->vertices, listSearch(graph->vertices, x));
+        Vertex vertex_y = listGet(graph->vertices, listSearch(graph->vertices, y));
         Edge edge = malloc(sizeof(struct strEdge));
         edge->data = y;
-        edge->origin = vertex;
-        edge->destination = listGet(graph->vertices, listSearch(graph->vertices, y));
-        listAdd(vertex->edges, edge);
+        edge->origin = vertex_x;
+        edge->destination = vertex_y;
+        listAdd(vertex_x->edges, edge);
         listAdd(graph->edges, edge);
     }
+    else
+        printf("No se puede agregar la arista porque no existen los vertices");
 }
 
 Type removeEdge(DGraph graph, Type x, Type y){

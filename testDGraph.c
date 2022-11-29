@@ -3,15 +3,15 @@
 #include <stdlib.h>
 
 int main(void){
-    DGraph G = dgraphCreate();
+    DGraph G = dgraphCreate(sizeof(char), sizeof(int));
     char x = 'a';
     char y = 'b';
-    char *p = &x;
-    char *q = &y;
-    addVertex(G, p);
+    int n = 1;
+    addVertex(G, &x);
     printf("Size: %d \n", sizeGraph(G));
-    addVertex(G, q);
+    addVertex(G, &y);
     printf("Size: %d \n", sizeGraph(G));
-    addEdge(G, p, q);
-    setEdgeLabel()
+    addEdge(G, &x, &y);
+    setEdgeLabel(G, &x, &y, &n);
+    printf("Label: %d \n", getEdgeLabel(G, &x, &y));
 }
