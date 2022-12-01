@@ -7,11 +7,11 @@ int main(void){
     char x = 'a';
     char y = 'b';
     int n = 1;
-    addVertex(G, &x);
+    addVertex(G, x);
     printf("Size: %d \n", sizeGraph(G));
-    addVertex(G, &y);
+    addVertex(G, y);
     printf("Size: %d \n", sizeGraph(G));
     addEdge(G, &x, &y);
-    setEdgeLabel(G, &x, &y, &n);
-    printf("Label: %d \n", getEdgeLabel(G, &x, &y));
+    //setEdgeLabel(G, &x, &y, &n);
+    //printf("Label: %d \n", getEdgeLabel(G, &x, &y));
 }

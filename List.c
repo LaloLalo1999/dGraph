@@ -96,11 +96,11 @@ int listSearch(List lt, Type data){
 
 Type listRemove(List lt, int p){
 	if(lt!=NULL){
-		//Validar que p se encuentre en el rango v�lido
+		//Validar que p se encuentre en el rango valido
 		if((p>=0)&&(p<lt->size)){
 			Node current=lt->first;
 			if(lt->size==1){
-				//La lista tiene un �nico elemento
+				//La lista tiene un unico elemento
 
 				//Para no perder en donde esta: data
 				Type temp=lt->first->data;
@@ -115,7 +115,7 @@ Type listRemove(List lt, int p){
 				return temp;
 			}
 			else{
-				//Cuando tenemos dos o m�s elementos
+				//Cuando tenemos dos o mas elementos
 
 				//�Vamos a eliminar el primer elemento?
 				if(p==0){

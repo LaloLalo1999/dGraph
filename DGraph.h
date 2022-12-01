@@ -1,8 +1,8 @@
 #include <stddef.h>
 #include "List.h"
 
-#ifndef DGRAPH_H_H
-#define DGRAPH_H_H
+#ifndef DGRAPH_H_
+#define DGRAPH_H_
 
 typedef enum {false, true} bool;
 
@@ -18,7 +18,7 @@ DGraph dgraphCreate(size_t, size_t); // Crea un grafo vacio
 
 unsigned int sizeGraph(DGraph); // Cantidad de vertices
 
-bool adjacent(DGraph, Type, Type); // Verifica si dos vertices son adyacentes
+unsigned int adjacent(DGraph, Type, Type); // Verifica si dos vertices son adyacentes
 
 Type neighbors(DGraph, Type); // Devuelve una lista con los vertices adyacentes a un vertice
 
